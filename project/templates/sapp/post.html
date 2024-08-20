@@ -1,0 +1,38 @@
+{% extends 'sapp/default.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+Post
+{% endblock title %}
+
+{% block content %}
+<h1>Пост </h1>
+
+<h3>{{ time_now|date:'M d Y' }}</h3>
+<hr>
+{% if post %}
+<table>
+    <tr>
+        <td>Новость или статья</td>
+        <td>Дата и время</td>
+        <td>Заголовок</td>
+        <td>Текст</td>
+        <td>Рейтинг</td>
+    </tr>
+
+
+    <tr>
+        <td>{{ post.articles_or_news }}</td>
+        <td>{{ post.datetime|date:'d m Y' }}</td>
+        <td>{{ post.title|censor }}</td>
+        <td>{{ post.text|censor|truncatechars:20 }}</td>
+        <td>{{ post.rating_pos }}</td>
+    </tr>
+
+
+</table>
+{% else %}
+<h2>Постов нет!</h2>
+{% endif %}
+{% endblock content %}
